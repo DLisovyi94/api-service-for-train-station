@@ -14,4 +14,15 @@ class Station(models.Model):
                 f"Longitude: {self.longitude}"
         )
 
-# Create your models here.
+
+class Route(models.Model):
+    station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    destination = models.ForeignKey(Station, on_delete=models.CASCADE)
+    distance = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = "Routes"
+
+    def __str__(self):
+        return (f"Route: {self.station} - {self.destination},"
+                f"distance: {self.distance}")

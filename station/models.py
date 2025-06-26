@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 class Station(models.Model):
@@ -38,7 +39,10 @@ class Train(models.Model):
     name = models.CharField(max_length=255)
     cargo_num = models.IntegerField()
     places_in_cargo = models.IntegerField()
-    train_type = models.ForeignKey("TrainType", on_delete=models.CASCADE)
+    train_type = models.ForeignKey(
+        "TrainType",
+        related_name="trains",
+        on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Trains"
@@ -59,3 +63,32 @@ class TrainType(models.Model):
 
     def __str__(self):
         return f"TrainType: {self.name}"
+
+
+class Journey(models.Model):
+    route = models.ForeignKey(
+        "Route",
+        related_name="journeys",
+        on_delete=models.CASCADE)
+    train = models.ForeignKey(
+        Train,
+        related_name="journeys",
+        on_delete=models.CASCADE)
+    departure_time = models.DateTimeField()
+    arrival_time = models.DateTimeField()
+
+    class Meta:
+        verbose_name_plural = "Journeys"
+
+    def clean(self):
+        if self.arrival_time <= self.departure_time:
+            raise ValidationError("Arrival time must be after departure time.")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return (f"Journey from {self.route.source.name} "
+                f"to {self.route.destination.name} "
+                f"at {self.departure_time.strftime('%Y-%m-%d %H:%M')}")

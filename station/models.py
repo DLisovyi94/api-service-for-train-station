@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -92,3 +93,50 @@ class Journey(models.Model):
         return (f"Journey from {self.route.source.name} "
                 f"to {self.route.destination.name} "
                 f"at {self.departure_time.strftime('%Y-%m-%d %H:%M')}")
+
+
+class Ticket(models.Model):
+    cargo= models.IntegerField()
+    seat = models.IntegerField()
+    journey = models.ForeignKey(
+        Journey,
+        related_name="tickets",
+        on_delete=models.CASCADE)
+    order = models.ForeignKey(
+        "Order",
+        related_name="tickets",
+        on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ("cargo", "seat", "journey")
+        verbose_name_plural = "Tickets"
+
+    def clean(self):
+        if Ticket.objects.filter(
+                journey=self.journey,
+                cargo=self.cargo,
+                seat=self.seat
+        ).exists():
+            raise ValidationError("This seat is already taken.")
+
+    def __str__(self):
+        return (f"Ticket - {self.journey.train.name} ,"
+                f"cargo: {self.cargo}, seat: {self.seat},"
+                f"order: {self.order.user}")
+
+
+class Order(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="orders"
+    )
+
+    class Meta:
+        verbose_name_plural = "Orders"
+
+    def __str__(self):
+        return f"Order by {self.user} on {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+
+

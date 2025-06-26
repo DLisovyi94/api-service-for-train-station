@@ -151,8 +151,3 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order by {self.user} on {self.created_at.strftime('%Y-%m-%d %H:%M')}"
-
-
-
-
-

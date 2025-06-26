@@ -66,6 +66,18 @@ class TrainType(models.Model):
         return f"TrainType: {self.name}"
 
 
+class Crew(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+
 class Journey(models.Model):
     route = models.ForeignKey(
         "Route",
@@ -77,6 +89,7 @@ class Journey(models.Model):
         on_delete=models.CASCADE)
     departure_time = models.DateTimeField()
     arrival_time = models.DateTimeField()
+    crew = models.ManyToManyField(Crew, related_name="journeys")
 
     class Meta:
         verbose_name_plural = "Journeys"
@@ -138,5 +151,8 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order by {self.user} on {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+
+
+
 
 

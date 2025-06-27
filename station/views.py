@@ -73,4 +73,7 @@ class TrainViewSet(viewsets.ModelViewSet):
             return TrainDetailSerializer
         return TrainSerializer
 
+
+
+
 # Create your views here.

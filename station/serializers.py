@@ -164,6 +164,9 @@ class JourneyDetailSerializer(JourneySerializer):
         return [member.full_name for member in obj.crew.all()]
 
 
+
+
+
 class OrderSerializer(serializers.ModelSerializer):
     tickets = TicketSerializer(many=True, read_only=False, allow_empty=False)
 

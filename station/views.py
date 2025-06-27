@@ -109,14 +109,9 @@ class OrderViewSet(
             .filter(user=self.request.user)
             .prefetch_related(
                 "tickets",
-                "tickets__journey__crew",
-                "tickets__journey__tickets"
-            )
-            .select_related(
-                "user",
                 "tickets__journey__route__source",
                 "tickets__journey__route__destination",
-                "tickets__journey__train",
+                "tickets__journey__train"
             )
         )
 

@@ -1,8 +1,9 @@
 from django.db import transaction
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from station.models import (
-    Station, Route, Journey, Train)
+    Station, Route, Journey, Train, Ticket)
 
 
 class StationSerializer(serializers.ModelSerializer):
@@ -69,19 +70,6 @@ class JourneyListSerializer(JourneySerializer):
         fields = ("id", "route", "train")
 
 
-class JourneyDetailSerializer(JourneySerializer):
-    crew = serializers.SerializerMethodField()
-    departure_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
-    arrival_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
-
-    class Meta:
-        model = Journey
-        fields = ("id", "route", "train", "departure_time", "arrival_time", "crew")
-
-    def get_crew(self, obj):
-        return [member.full_name for member in obj.crew.all()]
-
-
 class TrainSerializer(serializers.ModelSerializer):
     total_spaces = serializers.SerializerMethodField()
     class Meta:
@@ -112,3 +100,51 @@ class TrainDetailSerializer(TrainSerializer):
 
         def get_train_type(self, obj):
             return obj.train_type.name
+
+
+class TicketSerializer(serializers.ModelSerializer):
+    def validate(self, attrs):
+        data = super(TicketSerializer, self).validate(attrs=attrs)
+        Ticket.validate_ticket(
+            attrs["cargo"],
+            attrs["seat"],
+            attrs["journey"],
+            ValidationError
+        )
+        return data
+
+    class Meta:
+        model = Ticket
+        fields = ("id", "cargo", "seat", "journey")
+
+
+class TicketListSerializer(TicketSerializer):
+    journey = JourneyListSerializer(many=False, read_only=True)
+
+
+class TicketSeatsSerializer(TicketSerializer):
+    class Meta:
+        model = Ticket
+        fields = ("cargo", "seat")
+
+
+class JourneyDetailSerializer(JourneySerializer):
+    crew = serializers.SerializerMethodField()
+    departure_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    arrival_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    taken_places = TicketSeatsSerializer(
+        source="tickets", many=True, read_only=True
+    )
+
+    class Meta:
+        model = Journey
+        fields = ("id",
+                  "route",
+                  "train",
+                  "taken_places",
+                  "departure_time",
+                  "arrival_time",
+                  "crew")
+
+    def get_crew(self, obj):
+        return [member.full_name for member in obj.crew.all()]

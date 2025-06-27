@@ -109,33 +109,74 @@ class Journey(models.Model):
 
 
 class Ticket(models.Model):
-    cargo= models.IntegerField()
+    cargo = models.IntegerField()
     seat = models.IntegerField()
     journey = models.ForeignKey(
         Journey,
         related_name="tickets",
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE
+    )
     order = models.ForeignKey(
         "Order",
         related_name="tickets",
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE
+    )
 
     class Meta:
         unique_together = ("cargo", "seat", "journey")
         verbose_name_plural = "Tickets"
 
-    def clean(self):
-        if Ticket.objects.filter(
-                journey=self.journey,
-                cargo=self.cargo,
-                seat=self.seat
-        ).exists():
-            raise ValidationError("This seat is already taken.")
-
     def __str__(self):
-        return (f"Ticket - {self.journey.train.name} ,"
-                f"cargo: {self.cargo}, seat: {self.seat},"
-                f"order: {self.order.user}")
+        return (
+            f"Ticket - {self.journey.train.name} ,"
+            f"cargo: {self.cargo}, seat: {self.seat},"
+            f"order: {self.order.user}"
+        )
+
+    @staticmethod
+    def validate_ticket(cargo, seat, journey, error_to_raise):
+        train = journey.train
+        if not (1 <= cargo <= train.cargo_num):
+            raise error_to_raise({
+                "cargo": f"Cargo number must be in range 1–{train.cargo_num}"
+            })
+        if not (1 <= seat <= train.places_in_cargo):
+            raise error_to_raise({
+                "seat": f"Seat number must be in range 1–{train.places_in_cargo}"
+            })
+
+        if Ticket.objects.filter(
+            journey=journey,
+            cargo=cargo,
+            seat=seat
+        ).exists():
+            raise error_to_raise({
+                "seat": "This seat is already taken in this journey"
+            })
+
+    def clean(self):
+        Ticket.validate_ticket(
+            self.cargo,
+            self.seat,
+            self.journey,
+            ValidationError,
+        )
+
+    def save(
+        self,
+        *args,
+        force_insert=False,
+        force_update=False,
+        using=None,
+        update_fields=None,
+    ):
+        self.full_clean()
+        return super().save(
+            force_insert=force_insert,
+            force_update=force_update,
+            using=using,
+            update_fields=update_fields
+        )
 
 
 class Order(models.Model):

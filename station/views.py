@@ -7,9 +7,18 @@ from rest_framework.viewsets import GenericViewSet
 from station.models import Station, Route, Journey, Train, Order
 from station.serializers import (StationSerializer,
                                  StationListSerializer,
-                                 StationDetailSerializer, RouteSerializer, RouteDetailSerializer, RouteListSerializer,
-                                 JourneySerializer, JourneyListSerializer, JourneyDetailSerializer, TrainSerializer,
-                                 TrainListSerializer, TrainDetailSerializer, OrderSerializer, OrderListSerializer)
+                                 StationDetailSerializer,
+                                 RouteSerializer,
+                                 RouteDetailSerializer,
+                                 RouteListSerializer,
+                                 JourneySerializer,
+                                 JourneyListSerializer,
+                                 JourneyDetailSerializer,
+                                 TrainSerializer,
+                                 TrainListSerializer,
+                                 TrainDetailSerializer,
+                                 OrderSerializer,
+                                 OrderListSerializer)
 
 
 from django.db.models import Count
@@ -38,7 +47,7 @@ class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.all()
     serializer_class = RouteSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    search_fields = ["source__name", "destination__name"]
+    search_fields = ["route__source__name", "route__destination__name"]
 
     def get_serializer_class(self):
         if self.action == "list":

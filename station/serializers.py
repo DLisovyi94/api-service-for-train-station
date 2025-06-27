@@ -98,8 +98,8 @@ class TrainDetailSerializer(TrainSerializer):
                   "places_in_cargo",
                   "total_spaces")
 
-        def get_train_type(self, obj):
-            return obj.train_type.name
+    def get_train_type(self, obj):
+        return obj.train_type.name
 
 
 class TicketSerializer(serializers.ModelSerializer):
@@ -118,8 +118,22 @@ class TicketSerializer(serializers.ModelSerializer):
         fields = ("id", "cargo", "seat", "journey")
 
 
-class TicketListSerializer(TicketSerializer):
-    journey = JourneyListSerializer(many=False, read_only=True)
+class JourneyTicketInfoSerializer(serializers.ModelSerializer):
+    source = serializers.CharField(source="route.source.name", read_only=True)
+    destination = serializers.CharField(source="route.destination.name", read_only=True)
+    departure = serializers.DateTimeField(source="departure_time", format="%Y-%m-%dT%H:%M:%S%z")
+    train = serializers.CharField(source="train.name", read_only=True)
+
+    class Meta:
+        model = Journey
+        fields = ("id", "source", "destination", "departure", "train")
+
+class TicketListSerializer(serializers.ModelSerializer):
+    journey = JourneyTicketInfoSerializer(read_only=True)
+
+    class Meta:
+        model = Ticket
+        fields = ("id", "cargo", "seat", "journey")
 
 
 class TicketSeatsSerializer(TicketSerializer):

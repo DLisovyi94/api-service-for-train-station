@@ -2,7 +2,7 @@ from django.db import transaction
 from rest_framework import serializers
 
 from station.models import (
-    Station, Route, Journey)
+    Station, Route, Journey, Train)
 
 
 class StationSerializer(serializers.ModelSerializer):
@@ -81,3 +81,34 @@ class JourneyDetailSerializer(JourneySerializer):
     def get_crew(self, obj):
         return [member.full_name for member in obj.crew.all()]
 
+
+class TrainSerializer(serializers.ModelSerializer):
+    total_spaces = serializers.SerializerMethodField()
+    class Meta:
+        model = Train
+        fields = ("id", "name", "total_spaces")
+
+    def get_total_spaces(self, obj):
+        return obj.capacity_train
+
+class TrainListSerializer(TrainSerializer):
+    class Meta:
+        model = Train
+        fields = ("id", "name", "total_spaces")
+
+
+class TrainDetailSerializer(TrainSerializer):
+    train_type = serializers.CharField(
+        source="train_type.name",
+        read_only=True)
+
+    class Meta:
+        model = Train
+        fields = ("name",
+                  "train_type",
+                  "cargo_num",
+                  "places_in_cargo",
+                  "total_spaces")
+
+        def get_train_type(self, obj):
+            return obj.train_type.name

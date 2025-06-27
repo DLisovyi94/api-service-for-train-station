@@ -2,10 +2,11 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
 
-from station.models import Station, Route
+from station.models import Station, Route, Journey
 from station.serializers import (StationSerializer,
                                  StationListSerializer,
-                                 StationDetailSerializer, RouteSerializer, RouteDetailSerializer, RouteListSerializer)
+                                 StationDetailSerializer, RouteSerializer, RouteDetailSerializer, RouteListSerializer,
+                                 JourneySerializer, JourneyListSerializer, JourneyDetailSerializer)
 
 
 from django.db.models import Count
@@ -44,5 +45,16 @@ class RouteViewSet(viewsets.ModelViewSet):
         return RouteSerializer
 
 
+class JourneyViewSet(viewsets.ModelViewSet):
+    queryset = Journey.objects.all()
+    serializer_class = JourneySerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ["route__name"]
 
+    def get_serializer_class(self):
+        if self.action == "list":
+            return JourneyListSerializer
+        if self.action == "retrieve":
+            return JourneyDetailSerializer
+        return JourneySerializer
 # Create your views here.

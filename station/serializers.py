@@ -2,7 +2,7 @@ from django.db import transaction
 from rest_framework import serializers
 
 from station.models import (
-    Station, Route)
+    Station, Route, Journey)
 
 
 class StationSerializer(serializers.ModelSerializer):
@@ -48,3 +48,36 @@ class RouteDetailSerializer(RouteSerializer):
             .values_list("train__name", flat=True)
             .distinct()
         )
+
+class JourneySerializer(serializers.ModelSerializer):
+    route = serializers.SerializerMethodField()
+    train = serializers.SerializerMethodField()
+    class Meta:
+        model = Journey
+        fields = ("route", "train")
+
+    def get_route(self, obj):
+        return f"{obj.route.source.name} → {obj.route.destination.name}"
+
+    def get_train(self, obj):
+        return obj.train.name
+
+
+class JourneyListSerializer(JourneySerializer):
+    class Meta:
+        model = Journey
+        fields = ("id", "route", "train")
+
+
+class JourneyDetailSerializer(JourneySerializer):
+    crew = serializers.SerializerMethodField()
+    departure_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    arrival_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+
+    class Meta:
+        model = Journey
+        fields = ("id", "route", "train", "departure_time", "arrival_time", "crew")
+
+    def get_crew(self, obj):
+        return [member.full_name for member in obj.crew.all()]
+

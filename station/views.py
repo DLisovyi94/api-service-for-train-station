@@ -44,7 +44,7 @@ class StationViewSet(viewsets.ModelViewSet):
 
 
 class RouteViewSet(viewsets.ModelViewSet):
-    queryset = Route.objects.all()
+    queryset = Route.objects.select_related("source", "destination")
     serializer_class = RouteSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["route__source__name", "route__destination__name"]
@@ -58,7 +58,11 @@ class RouteViewSet(viewsets.ModelViewSet):
 
 
 class JourneyViewSet(viewsets.ModelViewSet):
-    queryset = Journey.objects.all()
+    queryset = Journey.objects.select_related(
+        "route__source",
+        "route__destination",
+        "train"
+    ).prefetch_related("crew", "tickets")
     serializer_class = JourneySerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["route__name"]
@@ -100,7 +104,21 @@ class OrderViewSet(
     pagination_class = OrderPagination
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
+        return (
+            Order.objects
+            .filter(user=self.request.user)
+            .prefetch_related(
+                "tickets",
+                "tickets__journey__crew",
+                "tickets__journey__tickets"
+            )
+            .select_related(
+                "user",
+                "tickets__journey__route__source",
+                "tickets__journey__route__destination",
+                "tickets__journey__train",
+            )
+        )
 
     def get_serializer_class(self):
         if self.action == "list":

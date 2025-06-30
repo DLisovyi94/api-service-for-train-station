@@ -1,6 +1,8 @@
 from datetime import datetime
 
 from django.shortcuts import render
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, mixins, status
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
@@ -114,6 +116,33 @@ class JourneyViewSet(viewsets.ModelViewSet):
 
         return TrainSerializer
 
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                "source",
+                OpenApiTypes.STR,
+                description="Filter by name of source station (e.g. ?source=Kyiv)",
+            ),
+            OpenApiParameter(
+                "destination",
+                OpenApiTypes.STR,
+                description="Filter by name of destination station (e.g. ?destination=Lviv)",
+            ),
+            OpenApiParameter(
+                "date",
+                OpenApiTypes.DATE,
+                description="Filter by date of departure (e.g. ?date=2025-06-30)",
+            ),
+            OpenApiParameter(
+                "train",
+                OpenApiTypes.INT,
+                description="Filter by train ID (e.g. ?train=5)",
+            ),
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
 
 class TrainViewSet(viewsets.ModelViewSet):
     queryset = Train.objects.all()
@@ -122,6 +151,12 @@ class TrainViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["name"]
 
+    @extend_schema(
+        request=TrainImageSerializer,
+        responses={200: TrainImageSerializer},
+        methods=["POST"],
+        description="Upload image to a specific train. Only admin users allowed.",
+    )
     @action(
         methods=["POST"],
         detail=True,
@@ -184,5 +219,13 @@ class OrderViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    @extend_schema(
+        summary="Get user's orders",
+        description="Returns list of orders with tickets and "
+                    "related journey, route and train data."
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
 # Create your views here.

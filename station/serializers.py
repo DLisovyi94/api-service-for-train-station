@@ -99,10 +99,17 @@ class TrainDetailSerializer(TrainSerializer):
                   "train_type",
                   "cargo_num",
                   "places_in_cargo",
-                  "total_spaces")
+                  "total_spaces",
+                  "image")
 
     def get_train_type(self, obj):
         return obj.train_type.name
+
+
+class TrainImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Train
+        fields = ("id", "image")
 
 
 class TicketSerializer(serializers.ModelSerializer):

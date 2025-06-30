@@ -1,10 +1,13 @@
 from datetime import datetime
 
 from django.shortcuts import render
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, status
+from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from station.models import Station, Route, Journey, Train, Order
@@ -22,7 +25,7 @@ from station.serializers import (StationSerializer,
                                  TrainListSerializer,
                                  TrainDetailSerializer,
                                  OrderSerializer,
-                                 OrderListSerializer)
+                                 OrderListSerializer, TrainImageSerializer)
 
 
 from django.db.models import Count, F, ExpressionWrapper, IntegerField
@@ -105,10 +108,11 @@ class JourneyViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == "list":
-            return JourneyListSerializer
+            return TrainListSerializer
         if self.action == "retrieve":
-            return JourneyDetailSerializer
-        return JourneySerializer
+            return TrainDetailSerializer
+
+        return TrainSerializer
 
 
 class TrainViewSet(viewsets.ModelViewSet):
@@ -118,11 +122,30 @@ class TrainViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["name"]
 
+    @action(
+        methods=["POST"],
+        detail=True,
+        url_path="upload-image",
+        permission_classes=[IsAdminUser],
+    )
+    def upload_image(self, request, pk=None):
+        """Endpoint for uploading image to specific train"""
+        train = self.get_object()
+        serializer = self.get_serializer(train, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def get_serializer_class(self):
         if self.action == "list":
             return TrainListSerializer
         if self.action == "retrieve":
             return TrainDetailSerializer
+        if self.action == "upload_image":
+            return TrainImageSerializer
         return TrainSerializer
 
 

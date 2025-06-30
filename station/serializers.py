@@ -125,7 +125,6 @@ class TrainListSerializer(TrainSerializer):
             "name",
             "cargo_num",
             "places_in_cargo",
-            "train_type",
             "total_spaces"
         )
 

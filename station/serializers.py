@@ -83,17 +83,33 @@ class JourneyListSerializer(JourneySerializer):
 
 class TrainSerializer(serializers.ModelSerializer):
     total_spaces = serializers.SerializerMethodField()
+
     class Meta:
         model = Train
-        fields = ("id", "name", "total_spaces")
+        fields = (
+            "id",
+            "name",
+            "cargo_num",
+            "places_in_cargo",
+            "train_type",
+            "total_spaces"
+        )
 
     def get_total_spaces(self, obj):
         return obj.capacity_train
 
+
 class TrainListSerializer(TrainSerializer):
     class Meta:
         model = Train
-        fields = ("id", "name", "total_spaces")
+        fields = (
+            "id",
+            "name",
+            "cargo_num",
+            "places_in_cargo",
+            "train_type",
+            "total_spaces"
+        )
 
 
 class TrainDetailSerializer(TrainSerializer):

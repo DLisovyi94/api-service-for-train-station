@@ -150,6 +150,7 @@ class JourneyDetailSerializer(JourneySerializer):
         source="tickets", many=True, read_only=True
     )
 
+
     class Meta:
         model = Journey
         fields = ("id",

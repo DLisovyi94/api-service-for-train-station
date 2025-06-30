@@ -110,11 +110,11 @@ class JourneyViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == "list":
-            return TrainListSerializer
+            return JourneyListSerializer
         if self.action == "retrieve":
-            return TrainDetailSerializer
+            return JourneyDetailSerializer
 
-        return TrainSerializer
+        return JourneySerializer
 
     @extend_schema(
         parameters=[

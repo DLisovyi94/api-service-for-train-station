@@ -2,9 +2,11 @@ from django.shortcuts import render
 from rest_framework import viewsets, mixins
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
 
 from station.models import Station, Route, Journey, Train, Order
+from station.permissions import IsAdminOrIfAuthenticatedReadOnly
 from station.serializers import (StationSerializer,
                                  StationListSerializer,
                                  StationDetailSerializer,
@@ -27,6 +29,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 class StationViewSet(viewsets.ModelViewSet):
     queryset = Station.objects.all()
     serializer_class = StationSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["name"]
 
@@ -46,6 +49,7 @@ class StationViewSet(viewsets.ModelViewSet):
 class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.select_related("source", "destination")
     serializer_class = RouteSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["route__source__name", "route__destination__name"]
 
@@ -64,6 +68,7 @@ class JourneyViewSet(viewsets.ModelViewSet):
         "train"
     ).prefetch_related("crew", "tickets")
     serializer_class = JourneySerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["route__name"]
 
@@ -78,6 +83,7 @@ class JourneyViewSet(viewsets.ModelViewSet):
 class TrainViewSet(viewsets.ModelViewSet):
     queryset = Train.objects.all()
     serializer_class = TrainSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["name"]
 
@@ -101,6 +107,7 @@ class OrderViewSet(
 ):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
     pagination_class = OrderPagination
 
     def get_queryset(self):

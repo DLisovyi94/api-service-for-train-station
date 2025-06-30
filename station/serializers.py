@@ -149,6 +149,8 @@ class JourneyDetailSerializer(JourneySerializer):
     taken_places = TicketSeatsSerializer(
         source="tickets", many=True, read_only=True
     )
+    taken_places_count = serializers.SerializerMethodField()
+    available_places = serializers.IntegerField(read_only=True)
 
 
     class Meta:
@@ -157,6 +159,8 @@ class JourneyDetailSerializer(JourneySerializer):
                   "route",
                   "train",
                   "taken_places",
+                  "taken_places_count",
+                  "available_places",
                   "departure_time",
                   "arrival_time",
                   "crew")
@@ -164,8 +168,8 @@ class JourneyDetailSerializer(JourneySerializer):
     def get_crew(self, obj):
         return [member.full_name for member in obj.crew.all()]
 
-
-
+    def get_taken_places_count(self, obj):
+        return obj.tickets.count()
 
 
 class OrderSerializer(serializers.ModelSerializer):

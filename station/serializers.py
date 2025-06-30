@@ -53,9 +53,11 @@ class RouteDetailSerializer(RouteSerializer):
 class JourneySerializer(serializers.ModelSerializer):
     route = serializers.SerializerMethodField()
     train = serializers.SerializerMethodField()
+    available_places = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Journey
-        fields = ("route", "train")
+        fields = ("route", "train", "available_places")
 
     def get_route(self, obj):
         return f"{obj.route.source.name} → {obj.route.destination.name}"
@@ -67,7 +69,8 @@ class JourneySerializer(serializers.ModelSerializer):
 class JourneyListSerializer(JourneySerializer):
     class Meta:
         model = Journey
-        fields = ("id", "route", "train")
+        fields = ("id", "route", "train", "departure_time", "arrival_time", "available_places")
+
 
 
 class TrainSerializer(serializers.ModelSerializer):
@@ -146,24 +149,22 @@ class JourneyDetailSerializer(JourneySerializer):
     crew = serializers.SerializerMethodField()
     departure_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     arrival_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
-    taken_places = TicketSeatsSerializer(
-        source="tickets", many=True, read_only=True
-    )
+    taken_places = TicketSeatsSerializer(source="tickets", many=True, read_only=True)
     taken_places_count = serializers.SerializerMethodField()
-    available_places = serializers.IntegerField(read_only=True)
-
 
     class Meta:
         model = Journey
-        fields = ("id",
-                  "route",
-                  "train",
-                  "taken_places",
-                  "taken_places_count",
-                  "available_places",
-                  "departure_time",
-                  "arrival_time",
-                  "crew")
+        fields = (
+            "id",
+            "route",
+            "train",
+            "taken_places",
+            "taken_places_count",
+            "available_places",  # ← тепер буде працювати
+            "departure_time",
+            "arrival_time",
+            "crew",
+        )
 
     def get_crew(self, obj):
         return [member.full_name for member in obj.crew.all()]

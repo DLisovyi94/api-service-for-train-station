@@ -102,11 +102,6 @@ class Journey(models.Model):
         self.full_clean()
         super().save(*args, **kwargs)
 
-    @property
-    def available_places(self):
-        total = self.train.cargo_num * self.train.places_in_cargo
-        taken = Ticket.objects.filter(journey=self).count()
-        return total - taken
 
     def __str__(self):
         return (f"Journey from {self.route.source.name} "

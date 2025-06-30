@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from rest_framework import viewsets, mixins
 from rest_framework.filters import SearchFilter
@@ -23,7 +25,7 @@ from station.serializers import (StationSerializer,
                                  OrderListSerializer)
 
 
-from django.db.models import Count
+from django.db.models import Count, F, ExpressionWrapper, IntegerField
 from django_filters.rest_framework import DjangoFilterBackend
 
 class StationViewSet(viewsets.ModelViewSet):
@@ -63,14 +65,45 @@ class RouteViewSet(viewsets.ModelViewSet):
 
 class JourneyViewSet(viewsets.ModelViewSet):
     queryset = Journey.objects.select_related(
-        "route__source",
-        "route__destination",
-        "train"
+        "route__source", "route__destination", "train"
     ).prefetch_related("crew", "tickets")
     serializer_class = JourneySerializer
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    search_fields = ["route__name"]
+    search_fields = ["route__source__name", "route__destination__name"]
+
+    def get_queryset(self):
+        queryset = self.queryset.annotate(
+            taken_places_count=Count("tickets"),
+        )
+
+        source = self.request.query_params.get("source")
+        destination = self.request.query_params.get("destination")
+        date = self.request.query_params.get("date")
+        train_id = self.request.query_params.get("train")
+
+        if source:
+            queryset = queryset.filter(route__source__name__icontains=source)
+        if destination:
+            queryset = queryset.filter(route__destination__name__icontains=destination)
+        if date:
+            parsed_date = datetime.strptime(date, "%Y-%m-%d").date()
+            queryset = queryset.filter(departure_time__date=parsed_date)
+
+        if train_id:
+            queryset = queryset.filter(train_id=train_id)
+
+        return (
+        Journey.objects
+        .select_related("route__source", "route__destination", "train")
+        .prefetch_related("crew", "tickets")
+        .annotate(
+            available_places=ExpressionWrapper(
+                F("train__cargo_num") * F("train__places_in_cargo") - Count("tickets"),
+                output_field=IntegerField()
+            )
+        )
+    )
 
     def get_serializer_class(self):
         if self.action == "list":

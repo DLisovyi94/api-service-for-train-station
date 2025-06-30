@@ -25,11 +25,19 @@ class StationDetailSerializer(StationSerializer):
 
 
 class RouteSerializer(serializers.ModelSerializer):
-    source = serializers.SlugRelatedField(read_only=True, slug_field="name")
-    destination = serializers.SlugRelatedField(read_only=True, slug_field="name")
+    source_id = serializers.PrimaryKeyRelatedField(
+        queryset=Station.objects.all(), source="source", write_only=True
+    )
+    destination_id = serializers.PrimaryKeyRelatedField(
+        queryset=Station.objects.all(), source="destination", write_only=True
+    )
+    source = serializers.StringRelatedField(read_only=True)
+    destination = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = Route
-        fields = ("source", "destination", "distance")
+        fields = ("id", "source", "destination", "source_id", "destination_id", "distance")
+
 
 
 class RouteListSerializer(RouteSerializer):

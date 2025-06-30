@@ -66,15 +66,24 @@ class RouteViewSet(viewsets.ModelViewSet):
 class JourneyViewSet(viewsets.ModelViewSet):
     queryset = Journey.objects.select_related(
         "route__source", "route__destination", "train"
-    ).prefetch_related("crew", "tickets")
+    ).prefetch_related("tickets", "tickets__journey__route__source", "tickets__journey__route__destination")
+
     serializer_class = JourneySerializer
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ["route__source__name", "route__destination__name"]
 
     def get_queryset(self):
-        queryset = self.queryset.annotate(
-            taken_places_count=Count("tickets"),
+        queryset = (
+            Journey.objects
+            .select_related("route__source", "route__destination", "train")
+            .prefetch_related("crew", "tickets")
+            .annotate(
+                available_places=ExpressionWrapper(
+                    F("train__cargo_num") * F("train__places_in_cargo") - Count("tickets"),
+                    output_field=IntegerField()
+                )
+            )
         )
 
         source = self.request.query_params.get("source")
@@ -89,21 +98,10 @@ class JourneyViewSet(viewsets.ModelViewSet):
         if date:
             parsed_date = datetime.strptime(date, "%Y-%m-%d").date()
             queryset = queryset.filter(departure_time__date=parsed_date)
-
         if train_id:
             queryset = queryset.filter(train_id=train_id)
 
-        return (
-        Journey.objects
-        .select_related("route__source", "route__destination", "train")
-        .prefetch_related("crew", "tickets")
-        .annotate(
-            available_places=ExpressionWrapper(
-                F("train__cargo_num") * F("train__places_in_cargo") - Count("tickets"),
-                output_field=IntegerField()
-            )
-        )
-    )
+        return queryset
 
     def get_serializer_class(self):
         if self.action == "list":

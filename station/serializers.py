@@ -160,7 +160,7 @@ class JourneyDetailSerializer(JourneySerializer):
             "train",
             "taken_places",
             "taken_places_count",
-            "available_places",  # ← тепер буде працювати
+            "available_places",
             "departure_time",
             "arrival_time",
             "crew",

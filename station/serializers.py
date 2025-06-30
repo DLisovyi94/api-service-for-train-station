@@ -59,13 +59,31 @@ class RouteDetailSerializer(RouteSerializer):
         )
 
 class JourneySerializer(serializers.ModelSerializer):
-    route = serializers.SerializerMethodField()
-    train = serializers.SerializerMethodField()
+    route_id = serializers.PrimaryKeyRelatedField(
+        queryset=Route.objects.all(), source="route", write_only=True
+    )
+    train_id = serializers.PrimaryKeyRelatedField(
+        queryset=Train.objects.all(), source="train", write_only=True
+    )
+
+    route = serializers.SerializerMethodField(read_only=True)
+    train = serializers.SerializerMethodField(read_only=True)
     available_places = serializers.IntegerField(read_only=True)
+    departure_time = serializers.DateTimeField()
+    arrival_time = serializers.DateTimeField()
 
     class Meta:
         model = Journey
-        fields = ("route", "train", "available_places")
+        fields = (
+            "id",
+            "route_id",
+            "train_id",
+            "route",
+            "train",
+            "departure_time",
+            "arrival_time",
+            "available_places",
+        )
 
     def get_route(self, obj):
         return f"{obj.route.source.name} → {obj.route.destination.name}"

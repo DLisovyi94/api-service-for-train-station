@@ -1,0 +1,1544 @@
+[
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "station",
+        "model": "crew"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "station",
+        "model": "order"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "station",
+        "model": "route"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "station",
+        "model": "station"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "station",
+        "model": "ticket"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "station",
+        "model": "train"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "station",
+        "model": "traintype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "station",
+        "model": "journey"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "user",
+        "model": "user"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "6omcpyivz2m8dybgucbmoab0k03j16wc",
+    "fields": {
+        "session_data": ".eJxVjDkOwjAUBe_iGln2_3gJJX3OED1vOIAcKUuFuDtESgHtm5n3EgO2tQ7bkudhTOIitDj9bgHxkdsO0h3tNsk4tXUeg9wVedBF9lPKz-vh_h1ULPVbE8rZs4mkii_RGYNA6Lw1notGclmzYhfggnXUMSeboQoxCF4xQbw_3JM3kQ:1uVPOU:ah7wk1204OofFJLeGcqbkRTO-9DaT4OCHCq6KQg52Rc",
+        "expire_date": "2025-07-12T06:50:34.238Z"
+    }
+},
+{
+    "model": "station.station",
+    "pk": 1,
+    "fields": {
+        "name": "Київ",
+        "latitude": 50.4501,
+        "longitude": 30.5234
+    }
+},
+{
+    "model": "station.station",
+    "pk": 2,
+    "fields": {
+        "name": "Львів",
+        "latitude": 49.8397,
+        "longitude": 24.0297
+    }
+},
+{
+    "model": "station.station",
+    "pk": 3,
+    "fields": {
+        "name": "Харків",
+        "latitude": 49.9935,
+        "longitude": 36.2304
+    }
+},
+{
+    "model": "station.station",
+    "pk": 4,
+    "fields": {
+        "name": "Одеса",
+        "latitude": 46.4825,
+        "longitude": 30.7233
+    }
+},
+{
+    "model": "station.station",
+    "pk": 5,
+    "fields": {
+        "name": "Дніпро",
+        "latitude": 48.4647,
+        "longitude": 35.0462
+    }
+},
+{
+    "model": "station.station",
+    "pk": 6,
+    "fields": {
+        "name": "Запоріжжя",
+        "latitude": 47.8388,
+        "longitude": 35.1396
+    }
+},
+{
+    "model": "station.station",
+    "pk": 7,
+    "fields": {
+        "name": "Івано-Франківськ",
+        "latitude": 48.9226,
+        "longitude": 24.7111
+    }
+},
+{
+    "model": "station.station",
+    "pk": 8,
+    "fields": {
+        "name": "Тернопіль",
+        "latitude": 49.5535,
+        "longitude": 25.5948
+    }
+},
+{
+    "model": "station.station",
+    "pk": 9,
+    "fields": {
+        "name": "Чернігів",
+        "latitude": 51.4982,
+        "longitude": 31.2893
+    }
+},
+{
+    "model": "station.station",
+    "pk": 10,
+    "fields": {
+        "name": "Суми",
+        "latitude": 50.9077,
+        "longitude": 34.7981
+    }
+},
+{
+    "model": "station.station",
+    "pk": 11,
+    "fields": {
+        "name": "Полтава",
+        "latitude": 49.5883,
+        "longitude": 34.5514
+    }
+},
+{
+    "model": "station.station",
+    "pk": 12,
+    "fields": {
+        "name": "Ужгород",
+        "latitude": 48.6208,
+        "longitude": 22.2879
+    }
+},
+{
+    "model": "station.station",
+    "pk": 13,
+    "fields": {
+        "name": "Чернівці",
+        "latitude": 48.2915,
+        "longitude": 25.9403
+    }
+},
+{
+    "model": "station.station",
+    "pk": 14,
+    "fields": {
+        "name": "Вінниця",
+        "latitude": 49.2331,
+        "longitude": 28.4682
+    }
+},
+{
+    "model": "station.station",
+    "pk": 15,
+    "fields": {
+        "name": "Миколаїв",
+        "latitude": 46.975,
+        "longitude": 31.9946
+    }
+},
+{
+    "model": "station.route",
+    "pk": 1,
+    "fields": {
+        "source": 14,
+        "destination": 10,
+        "distance": 458
+    }
+},
+{
+    "model": "station.route",
+    "pk": 2,
+    "fields": {
+        "source": 5,
+        "destination": 11,
+        "distance": 649
+    }
+},
+{
+    "model": "station.route",
+    "pk": 3,
+    "fields": {
+        "source": 4,
+        "destination": 8,
+        "distance": 131
+    }
+},
+{
+    "model": "station.route",
+    "pk": 4,
+    "fields": {
+        "source": 8,
+        "destination": 10,
+        "distance": 294
+    }
+},
+{
+    "model": "station.route",
+    "pk": 5,
+    "fields": {
+        "source": 7,
+        "destination": 15,
+        "distance": 395
+    }
+},
+{
+    "model": "station.route",
+    "pk": 6,
+    "fields": {
+        "source": 3,
+        "destination": 6,
+        "distance": 266
+    }
+},
+{
+    "model": "station.route",
+    "pk": 7,
+    "fields": {
+        "source": 15,
+        "destination": 5,
+        "distance": 731
+    }
+},
+{
+    "model": "station.route",
+    "pk": 8,
+    "fields": {
+        "source": 8,
+        "destination": 12,
+        "distance": 684
+    }
+},
+{
+    "model": "station.route",
+    "pk": 9,
+    "fields": {
+        "source": 12,
+        "destination": 7,
+        "distance": 566
+    }
+},
+{
+    "model": "station.route",
+    "pk": 10,
+    "fields": {
+        "source": 9,
+        "destination": 11,
+        "distance": 269
+    }
+},
+{
+    "model": "station.route",
+    "pk": 11,
+    "fields": {
+        "source": 1,
+        "destination": 11,
+        "distance": 175
+    }
+},
+{
+    "model": "station.route",
+    "pk": 12,
+    "fields": {
+        "source": 6,
+        "destination": 10,
+        "distance": 687
+    }
+},
+{
+    "model": "station.route",
+    "pk": 13,
+    "fields": {
+        "source": 7,
+        "destination": 15,
+        "distance": 422
+    }
+},
+{
+    "model": "station.route",
+    "pk": 14,
+    "fields": {
+        "source": 1,
+        "destination": 3,
+        "distance": 103
+    }
+},
+{
+    "model": "station.route",
+    "pk": 15,
+    "fields": {
+        "source": 13,
+        "destination": 9,
+        "distance": 328
+    }
+},
+{
+    "model": "station.train",
+    "pk": 1,
+    "fields": {
+        "name": "Потяг 1",
+        "cargo_num": 5,
+        "places_in_cargo": 20,
+        "train_type": 1,
+        "image": "uploads/trains/1-e7bc293b-bd01-4ac4-bc8e-9daf6daa08af.webp"
+    }
+},
+{
+    "model": "station.train",
+    "pk": 2,
+    "fields": {
+        "name": "Потяг 2",
+        "cargo_num": 5,
+        "places_in_cargo": 20,
+        "train_type": 1,
+        "image": "uploads/trains/2-9ef227a1-7b48-4e1b-8acc-e0a8792819cb.webp"
+    }
+},
+{
+    "model": "station.train",
+    "pk": 3,
+    "fields": {
+        "name": "Потяг 3",
+        "cargo_num": 5,
+        "places_in_cargo": 20,
+        "train_type": 1,
+        "image": ""
+    }
+},
+{
+    "model": "station.train",
+    "pk": 4,
+    "fields": {
+        "name": "Потяг 4",
+        "cargo_num": 5,
+        "places_in_cargo": 20,
+        "train_type": 1,
+        "image": ""
+    }
+},
+{
+    "model": "station.train",
+    "pk": 5,
+    "fields": {
+        "name": "Потяг 5",
+        "cargo_num": 5,
+        "places_in_cargo": 20,
+        "train_type": 1,
+        "image": ""
+    }
+},
+{
+    "model": "station.traintype",
+    "pk": 1,
+    "fields": {
+        "name": "Пасажирський"
+    }
+},
+{
+    "model": "station.crew",
+    "pk": 1,
+    "fields": {
+        "first_name": "Іван",
+        "last_name": "Петренко"
+    }
+},
+{
+    "model": "station.crew",
+    "pk": 2,
+    "fields": {
+        "first_name": "Олена",
+        "last_name": "Ковальчук"
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 1,
+    "fields": {
+        "route": 4,
+        "train": 2,
+        "departure_time": "2025-06-29T03:42:17.888Z",
+        "arrival_time": "2025-06-29T07:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 2,
+    "fields": {
+        "route": 10,
+        "train": 3,
+        "departure_time": "2025-06-30T03:42:17.888Z",
+        "arrival_time": "2025-06-30T08:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 3,
+    "fields": {
+        "route": 9,
+        "train": 3,
+        "departure_time": "2025-07-01T03:42:17.888Z",
+        "arrival_time": "2025-07-01T10:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 4,
+    "fields": {
+        "route": 2,
+        "train": 1,
+        "departure_time": "2025-07-02T03:42:17.888Z",
+        "arrival_time": "2025-07-02T07:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 5,
+    "fields": {
+        "route": 9,
+        "train": 2,
+        "departure_time": "2025-07-03T03:42:17.888Z",
+        "arrival_time": "2025-07-03T10:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 6,
+    "fields": {
+        "route": 2,
+        "train": 4,
+        "departure_time": "2025-07-04T03:42:17.888Z",
+        "arrival_time": "2025-07-04T08:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 7,
+    "fields": {
+        "route": 3,
+        "train": 5,
+        "departure_time": "2025-07-05T03:42:17.888Z",
+        "arrival_time": "2025-07-05T06:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 8,
+    "fields": {
+        "route": 10,
+        "train": 3,
+        "departure_time": "2025-07-06T03:42:17.888Z",
+        "arrival_time": "2025-07-06T06:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 9,
+    "fields": {
+        "route": 5,
+        "train": 1,
+        "departure_time": "2025-07-07T03:42:17.888Z",
+        "arrival_time": "2025-07-07T09:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.journey",
+    "pk": 10,
+    "fields": {
+        "route": 13,
+        "train": 5,
+        "departure_time": "2025-07-08T03:42:17.888Z",
+        "arrival_time": "2025-07-08T07:42:17.888Z",
+        "crew": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 1,
+    "fields": {
+        "cargo": 1,
+        "seat": 18,
+        "journey": 7,
+        "order": 1
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 2,
+    "fields": {
+        "cargo": 4,
+        "seat": 9,
+        "journey": 7,
+        "order": 1
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 3,
+    "fields": {
+        "cargo": 5,
+        "seat": 14,
+        "journey": 10,
+        "order": 2
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 4,
+    "fields": {
+        "cargo": 4,
+        "seat": 6,
+        "journey": 10,
+        "order": 2
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 5,
+    "fields": {
+        "cargo": 2,
+        "seat": 19,
+        "journey": 4,
+        "order": 3
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 6,
+    "fields": {
+        "cargo": 2,
+        "seat": 11,
+        "journey": 4,
+        "order": 3
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 7,
+    "fields": {
+        "cargo": 1,
+        "seat": 15,
+        "journey": 1,
+        "order": 4
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 8,
+    "fields": {
+        "cargo": 1,
+        "seat": 17,
+        "journey": 1,
+        "order": 4
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 9,
+    "fields": {
+        "cargo": 1,
+        "seat": 14,
+        "journey": 5,
+        "order": 5
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 10,
+    "fields": {
+        "cargo": 1,
+        "seat": 1,
+        "journey": 5,
+        "order": 5
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 11,
+    "fields": {
+        "cargo": 4,
+        "seat": 8,
+        "journey": 10,
+        "order": 6
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 12,
+    "fields": {
+        "cargo": 5,
+        "seat": 9,
+        "journey": 10,
+        "order": 6
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 13,
+    "fields": {
+        "cargo": 1,
+        "seat": 13,
+        "journey": 4,
+        "order": 7
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 14,
+    "fields": {
+        "cargo": 4,
+        "seat": 4,
+        "journey": 4,
+        "order": 7
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 15,
+    "fields": {
+        "cargo": 3,
+        "seat": 10,
+        "journey": 3,
+        "order": 8
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 16,
+    "fields": {
+        "cargo": 1,
+        "seat": 14,
+        "journey": 3,
+        "order": 8
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 17,
+    "fields": {
+        "cargo": 2,
+        "seat": 6,
+        "journey": 7,
+        "order": 9
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 18,
+    "fields": {
+        "cargo": 3,
+        "seat": 6,
+        "journey": 7,
+        "order": 9
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 19,
+    "fields": {
+        "cargo": 4,
+        "seat": 2,
+        "journey": 1,
+        "order": 10
+    }
+},
+{
+    "model": "station.ticket",
+    "pk": 20,
+    "fields": {
+        "cargo": 1,
+        "seat": 7,
+        "journey": 1,
+        "order": 10
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add crew",
+        "content_type": [
+            "station",
+            "crew"
+        ],
+        "codename": "add_crew"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change crew",
+        "content_type": [
+            "station",
+            "crew"
+        ],
+        "codename": "change_crew"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete crew",
+        "content_type": [
+            "station",
+            "crew"
+        ],
+        "codename": "delete_crew"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view crew",
+        "content_type": [
+            "station",
+            "crew"
+        ],
+        "codename": "view_crew"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add order",
+        "content_type": [
+            "station",
+            "order"
+        ],
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change order",
+        "content_type": [
+            "station",
+            "order"
+        ],
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete order",
+        "content_type": [
+            "station",
+            "order"
+        ],
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view order",
+        "content_type": [
+            "station",
+            "order"
+        ],
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add route",
+        "content_type": [
+            "station",
+            "route"
+        ],
+        "codename": "add_route"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change route",
+        "content_type": [
+            "station",
+            "route"
+        ],
+        "codename": "change_route"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete route",
+        "content_type": [
+            "station",
+            "route"
+        ],
+        "codename": "delete_route"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view route",
+        "content_type": [
+            "station",
+            "route"
+        ],
+        "codename": "view_route"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add station",
+        "content_type": [
+            "station",
+            "station"
+        ],
+        "codename": "add_station"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change station",
+        "content_type": [
+            "station",
+            "station"
+        ],
+        "codename": "change_station"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete station",
+        "content_type": [
+            "station",
+            "station"
+        ],
+        "codename": "delete_station"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view station",
+        "content_type": [
+            "station",
+            "station"
+        ],
+        "codename": "view_station"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add ticket",
+        "content_type": [
+            "station",
+            "ticket"
+        ],
+        "codename": "add_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change ticket",
+        "content_type": [
+            "station",
+            "ticket"
+        ],
+        "codename": "change_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete ticket",
+        "content_type": [
+            "station",
+            "ticket"
+        ],
+        "codename": "delete_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view ticket",
+        "content_type": [
+            "station",
+            "ticket"
+        ],
+        "codename": "view_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add train",
+        "content_type": [
+            "station",
+            "train"
+        ],
+        "codename": "add_train"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change train",
+        "content_type": [
+            "station",
+            "train"
+        ],
+        "codename": "change_train"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete train",
+        "content_type": [
+            "station",
+            "train"
+        ],
+        "codename": "delete_train"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view train",
+        "content_type": [
+            "station",
+            "train"
+        ],
+        "codename": "view_train"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add train type",
+        "content_type": [
+            "station",
+            "traintype"
+        ],
+        "codename": "add_traintype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change train type",
+        "content_type": [
+            "station",
+            "traintype"
+        ],
+        "codename": "change_traintype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete train type",
+        "content_type": [
+            "station",
+            "traintype"
+        ],
+        "codename": "delete_traintype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view train type",
+        "content_type": [
+            "station",
+            "traintype"
+        ],
+        "codename": "view_traintype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add journey",
+        "content_type": [
+            "station",
+            "journey"
+        ],
+        "codename": "add_journey"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change journey",
+        "content_type": [
+            "station",
+            "journey"
+        ],
+        "codename": "change_journey"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete journey",
+        "content_type": [
+            "station",
+            "journey"
+        ],
+        "codename": "delete_journey"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view journey",
+        "content_type": [
+            "station",
+            "journey"
+        ],
+        "codename": "view_journey"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "user.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$6GLDRijQZrB4eK9coPRhR8$mN2+Zbcckca6hWZ1tMAIBiTpgzgqmkMbNPgQzMQlkNE=",
+        "last_login": "2025-06-28T06:50:34.203Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-06-28T06:43:26.377Z",
+        "email": "admin@example.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$ZoqalXWciMmZXCmbEOMhPj$ju1j4dB+8gPB0tBeMdMvrfjOvuvD3PibYEzUI5+JDlc=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-06-28T06:43:26.389Z",
+        "email": "user@example.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "station.order",
+    "pk": 1,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 2,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 3,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 4,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 5,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 6,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 7,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 8,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 9,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+},
+{
+    "model": "station.order",
+    "pk": 10,
+    "fields": {
+        "created_at": "2025-06-28T03:42:17.889Z",
+        "user": [
+            "user@example.com"
+        ]
+    }
+}
+]

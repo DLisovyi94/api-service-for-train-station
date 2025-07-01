@@ -15,4 +15,4 @@ RUN mkdir -p /files/media \
     && chown -R my_user /files/media \
     && chmod -R 755 /files/media
 
-USER my_user
+#USER my_user

@@ -83,8 +83,13 @@ WSGI_APPLICATION = "train_station.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("POSTGRES_DB",
+                               "train_station"),
+        "USER": os.environ.get("POSTGRES_USER", "train_station"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "train_station"),
+        "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
 
@@ -162,3 +167,15 @@ SIMPLE_JWT = {
    "ROTATE_REFRESH_TOKENS": True
 }
 
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Train-Station Service API",
+    "DESCRIPTION": "Choose and order train tickets",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "defaultModelRendering": "model",
+        "defaultModelsExpandDepth": 2,
+        "defaultModelExpandDepth": 2,
+    },
+}
